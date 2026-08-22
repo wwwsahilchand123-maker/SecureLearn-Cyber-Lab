@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Simulator - SecureLearn Cyber Lab</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🛡️ SecureLearn Cyber Lab</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="url-analyzer.html" class="nav-link">URL Analyzer</a>
+                <a href="email-analyzer.html" class="nav-link">Email Analyzer</a>
+                <a href="simulator.html" class="nav-link active">Simulation</a>
+                <a href="quiz.html" class="nav-link">Quiz</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="about.html" class="nav-link">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="warning-banner warning-banner-critical">
+        <div class="container">
+            <strong>🎓 EDUCATIONAL SIMULATION</strong> - This is a SAFE learning environment. NO real credentials are collected!
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>🎯 Phishing Simulation Lab</h1>
+                <p>Experience safe phishing scenarios and learn to identify threats</p>
+            </div>
+
+            <!-- Simulation Selection -->
+            <div class="card">
+                <h2>Select a Simulation Scenario</h2>
+                <p>Click on a scenario below to experience a simulated phishing attempt. Remember: This is completely safe and educational!</p>
+                
+                <div class="simulation-grid">
+                    <div class="simulation-card" onclick="startSimulation('banking')">
+                        <div class="simulation-icon">🏦</div>
+                        <h3>Fake Banking Login</h3>
+                        <p>Simulated bank phishing page with common indicators</p>
+                        <span class="difficulty difficulty-beginner">Beginner</span>
+                    </div>
+                    
+                    <div class="simulation-card" onclick="startSimulation('social')">
+                        <div class="simulation-icon">📱</div>
+                        <h3>Social Media Phishing</h3>
+                        <p>Fake social media login with urgency tactics</p>
+                        <span class="difficulty difficulty-intermediate">Intermediate</span>
+                    </div>
+                    
+                    <div class="simulation-card" onclick="startSimulation('email')">
+                        <div class="simulation-icon">📧</div>
+                        <h3>Email Account Phishing</h3>
+                        <p>Suspicious email service login page</p>
+                        <span class="difficulty difficulty-intermediate">Intermediate</span>
+                    </div>
+                    
+                    <div class="simulation-card" onclick="startSimulation('shopping')">
+                        <div class="simulation-icon">🛒</div>
+                        <h3>E-commerce Scam</h3>
+                        <p>Fake online shopping verification</p>
+                        <span class="difficulty difficulty-advanced">Advanced</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulation Container -->
+            <div id="simulationContainer" style="display: none;">
+                <div class="card simulation-active">
+                    <div class="simulation-header">
+                        <h2>🎭 Active Simulation</h2>
+                        <button onclick="endSimulation()" class="btn btn-secondary">Exit Simulation</button>
+                    </div>
+                    
+                    <div id="simulationContent"></div>
+                </div>
+            </div>
+
+            <!-- Educational Tips -->
+            <div class="card info-card">
+                <h2>💡 What to Look For in These Simulations</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3>🔗 Check the URL</h3>
+                        <ul>
+                            <li>Look for misspellings in domain</li>
+                            <li>Verify HTTPS and certificate</li>
+                            <li>Check for unusual subdomains</li>
+                            <li>Watch for IP addresses</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>🎨 Visual Clues</h3>
+                        <ul>
+                            <li>Poor quality logos</li>
+                            <li>Inconsistent branding</li>
+                            <li>Spelling/grammar errors</li>
+                            <li>Generic design elements</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>⚠️ Warning Signs</h3>
+                        <ul>
+                            <li>Urgent action required</li>
+                            <li>Account suspension threats</li>
+                            <li>Too-good-to-be-true offers</li>
+                            <li>Unexpected requests</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>🔒 Security Features</h3>
+                        <ul>
+                            <li>Missing security badges</li>
+                            <li>No multi-factor auth option</li>
+                            <li>Unusual login requirements</li>
+                            <li>Lack of contact information</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SecureLearn Cyber Lab - Educational Use Only</p>
+        </div>
+    </footer>
+
+    <!-- Warning Modal -->
+    <div id="warningModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="warningTitle">⚠️ PHISHING DETECTED!</h2>
+            </div>
+            <div class="modal-body" id="warningBody">
+                <p class="warning-main">You just interacted with a simulated phishing page!</p>
+                <div id="warningIndicators"></div>
+                <div id="warningEducation"></div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeWarningModal()" class="btn btn-primary">I Understand</button>
+                <button onclick="showDetailedAnalysis()" class="btn btn-secondary">See Detailed Analysis</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/simulator.js"></script>
+</body>
+</html>

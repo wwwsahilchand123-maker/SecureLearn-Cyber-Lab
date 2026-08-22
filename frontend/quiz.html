@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awareness Quiz - SecureLearn Cyber Lab</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🛡️ SecureLearn Cyber Lab</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="url-analyzer.html" class="nav-link">URL Analyzer</a>
+                <a href="email-analyzer.html" class="nav-link">Email Analyzer</a>
+                <a href="simulator.html" class="nav-link">Simulation</a>
+                <a href="quiz.html" class="nav-link active">Quiz</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="about.html" class="nav-link">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>📝 Cybersecurity Awareness Quiz</h1>
+                <p>Test your knowledge about phishing and cybersecurity</p>
+            </div>
+
+            <!-- Quiz Introduction -->
+            <div id="quizIntro" class="card">
+                <h2>Welcome to the Phishing Awareness Quiz</h2>
+                <p>This quiz will test your understanding of phishing attacks, detection methods, and cybersecurity best practices.</p>
+                
+                <div class="quiz-info">
+                    <div class="info-item">
+                        <span class="info-icon">📊</span>
+                        <span><strong>20 Questions</strong></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">⏱️</span>
+                        <span><strong>No Time Limit</strong></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🎯</span>
+                        <span><strong>Multiple Choice</strong></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📈</span>
+                        <span><strong>Instant Feedback</strong></span>
+                    </div>
+                </div>
+
+                <button onclick="startQuiz()" class="btn btn-primary btn-large">Start Quiz</button>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quizContainer" style="display: none;">
+                <div class="card">
+                    <div class="quiz-header">
+                        <div class="quiz-progress">
+                            <span id="questionNumber">Question 1</span>
+                            <span id="progressText">of 20</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progressFill" class="progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <div id="questionContainer">
+                        <h2 id="questionText"></h2>
+                        <div id="optionsContainer" class="options-container"></div>
+                    </div>
+
+                    <div class="quiz-navigation">
+                        <button id="nextButton" onclick="nextQuestion()" class="btn btn-primary" style="display: none;">
+                            Next Question →
+                        </button>
+                        <button id="submitButton" onclick="submitQuiz()" class="btn btn-success" style="display: none;">
+                            Submit Quiz
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Container -->
+            <div id="resultsContainer" style="display: none;">
+                <div class="card results-card">
+                    <h2>🎉 Quiz Results</h2>
+                    
+                    <div class="score-display">
+                        <div class="score-circle-large" id="scoreCircleLarge">
+                            <div class="score-content">
+                                <div class="score-number-large" id="scoreNumberLarge">0</div>
+                                <div class="score-total">/ <span id="totalQuestions">20</span></div>
+                            </div>
+                        </div>
+                        <div class="score-info">
+                            <div class="score-percentage" id="scorePercentage">0%</div>
+                            <div class="score-level" id="scoreLevel">-</div>
+                            <div class="score-message" id="scoreMessage">-</div>
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button onclick="reviewAnswers()" class="btn btn-primary">📋 Review Answers</button>
+                        <button onclick="retakeQuiz()" class="btn btn-secondary">🔄 Retake Quiz</button>
+                        <a href="dashboard.html" class="btn btn-secondary">📊 View Dashboard</a>
+                    </div>
+                </div>
+
+                <!-- Detailed Results -->
+                <div id="detailedResults" class="card" style="display: none;">
+                    <h2>📋 Detailed Review</h2>
+                    <div id="reviewContainer"></div>
+                </div>
+            </div>
+
+            <!-- Learning Resources -->
+            <div class="card info-card">
+                <h2>📚 Prepare for the Quiz</h2>
+                <div class="resources-grid">
+                    <div class="resource-item">
+                        <h3>🎯 Topics Covered</h3>
+                        <ul>
+                            <li>Phishing fundamentals</li>
+                            <li>Email security</li>
+                            <li>URL analysis</li>
+                            <li>Social engineering</li>
+                            <li>Best practices</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <h3>💡 Tips for Success</h3>
+                        <ul>
+                            <li>Read questions carefully</li>
+                            <li>Think about real scenarios</li>
+                            <li>Review explanations</li>
+                            <li>Learn from mistakes</li>
+                            <li>Retake to improve</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <h3>🏆 Scoring Levels</h3>
+                        <ul>
+                            <li><strong>90%+</strong> - Expert</li>
+                            <li><strong>70-89%</strong> - Advanced</li>
+                            <li><strong>50-69%</strong> - Intermediate</li>
+                            <li><strong>&lt;50%</strong> - Beginner</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <h3>📖 Additional Resources</h3>
+                        <ul>
+                            <li><a href="resources.html">Study Materials</a></li>
+                            <li><a href="simulator.html">Practice Simulations</a></li>
+                            <li><a href="url-analyzer.html">URL Analyzer Tool</a></li>
+                            <li><a href="email-analyzer.html">Email Analyzer Tool</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SecureLearn Cyber Lab - Educational Use Only</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/quiz.js"></script>
+</body>
+</html>

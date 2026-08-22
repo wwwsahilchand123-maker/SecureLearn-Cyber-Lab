@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SecureLearn Cyber Lab</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🛡️ SecureLearn Cyber Lab</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="url-analyzer.html" class="nav-link">URL Analyzer</a>
+                <a href="email-analyzer.html" class="nav-link">Email Analyzer</a>
+                <a href="simulator.html" class="nav-link">Simulation</a>
+                <a href="quiz.html" class="nav-link">Quiz</a>
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="about.html" class="nav-link">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>📊 Analytics Dashboard</h1>
+                <p>Monitor your learning progress and platform statistics</p>
+            </div>
+
+            <!-- User Stats -->
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-icon">🔍</div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="userAnalyses">0</div>
+                        <div class="stat-label">Total Analyses</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">⚠️</div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="phishingDetected">0</div>
+                        <div class="stat-label">Phishing Detected</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="quizzesTaken">0</div>
+                        <div class="stat-label">Quizzes Taken</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="avgScore">0%</div>
+                        <div class="stat-label">Avg Quiz Score</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-grid">
+                <div class="card chart-card">
+                    <h2>Analysis Distribution</h2>
+                    <canvas id="analysisChart"></canvas>
+                </div>
+
+                <div class="card chart-card">
+                    <h2>Risk Level Distribution</h2>
+                    <canvas id="riskChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Platform Statistics -->
+            <div class="card">
+                <h2>🌐 Platform Statistics</h2>
+                <div class="platform-stats-grid">
+                    <div class="platform-stat">
+                        <span class="platform-stat-label">Total Users</span>
+                        <span class="platform-stat-value" id="totalUsers">0</span>
+                    </div>
+                    <div class="platform-stat">
+                        <span class="platform-stat-label">Total Simulations</span>
+                        <span class="platform-stat-value" id="totalSimulations">0</span>
+                    </div>
+                    <div class="platform-stat">
+                        <span class="platform-stat-label">Total Analyses</span>
+                        <span class="platform-stat-value" id="totalAnalyses">0</span>
+                    </div>
+                    <div class="platform-stat">
+                        <span class="platform-stat-label">Platform Avg Score</span>
+                        <span class="platform-stat-value" id="platformAvgScore">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card">
+                <h2>📜 Recent Activity</h2>
+                <div id="recentActivity" class="activity-list">
+                    <p class="loading">Loading activity...</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <h2>⚡ Quick Actions</h2>
+                <div class="quick-actions-grid">
+                    <a href="url-analyzer.html" class="quick-action-card">
+                        <div class="quick-action-icon">🔍</div>
+                        <div class="quick-action-text">Analyze URL</div>
+                    </a>
+                    <a href="email-analyzer.html" class="quick-action-card">
+                        <div class="quick-action-icon">📧</div>
+                        <div class="quick-action-text">Analyze Email</div>
+                    </a>
+                    <a href="simulator.html" class="quick-action-card">
+                        <div class="quick-action-icon">🎯</div>
+                        <div class="quick-action-text">Start Simulation</div>
+                    </a>
+                    <a href="quiz.html" class="quick-action-card">
+                        <div class="quick-action-icon">📝</div>
+                        <div class="quick-action-text">Take Quiz</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SecureLearn Cyber Lab - Educational Use Only</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

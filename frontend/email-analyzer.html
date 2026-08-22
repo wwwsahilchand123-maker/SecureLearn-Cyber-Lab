@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Analyzer - SecureLearn Cyber Lab</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🛡️ SecureLearn Cyber Lab</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="url-analyzer.html" class="nav-link">URL Analyzer</a>
+                <a href="email-analyzer.html" class="nav-link active">Email Analyzer</a>
+                <a href="simulator.html" class="nav-link">Simulation</a>
+                <a href="quiz.html" class="nav-link">Quiz</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="about.html" class="nav-link">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="warning-banner">
+        <div class="container">
+            <strong>⚠️ EDUCATIONAL TOOL</strong> - Do not submit real sensitive emails or personal information.
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>📧 Email Phishing Analyzer</h1>
+                <p>Analyze emails and messages for phishing indicators</p>
+            </div>
+
+            <!-- Analysis Form -->
+            <div class="card">
+                <h2>Enter Email Details</h2>
+                <form id="emailAnalysisForm">
+                    <div class="form-group">
+                        <label for="senderInput">Sender Email:</label>
+                        <input type="email" 
+                               id="senderInput" 
+                               class="form-control" 
+                               placeholder="sender@example.com"
+                               required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subjectInput">Email Subject:</label>
+                        <input type="text" 
+                               id="subjectInput" 
+                               class="form-control" 
+                               placeholder="Enter email subject"
+                               required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bodyInput">Email Body:</label>
+                        <textarea id="bodyInput" 
+                                  class="form-control" 
+                                  rows="8" 
+                                  placeholder="Paste email content here..."
+                                  required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <span id="analyzeButtonText">📧 Analyze Email</span>
+                        <span id="analyzeButtonLoading" class="loading" style="display: none;">
+                            ⏳ Analyzing...
+                        </span>
+                    </button>
+                </form>
+
+                <!-- Sample Emails -->
+                <div class="sample-emails">
+                    <h3>Try Sample Phishing Email:</h3>
+                    <button class="btn btn-sample" onclick="loadSampleEmail()">
+                        Load Phishing Example
+                    </button>
+                    <button class="btn btn-sample" onclick="loadLegitimateEmail()">
+                        Load Legitimate Example
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" style="display: none;">
+                <!-- Risk Score -->
+                <div class="card">
+                    <h2>Analysis Results</h2>
+                    <div class="risk-score-container">
+                        <div class="risk-score">
+                            <div class="score-circle" id="scoreCircle">
+                                <span class="score-number" id="scoreNumber">0</span>
+                                <span class="score-label">/100</span>
+                            </div>
+                            <div class="risk-level" id="riskLevel">ANALYZING...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Details -->
+                <div class="card">
+                    <h2>📨 Email Details</h2>
+                    <div class="email-details">
+                        <div class="detail-item">
+                            <strong>From:</strong>
+                            <span id="emailFrom"></span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Subject:</strong>
+                            <span id="emailSubject"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indicators -->
+                <div class="card" id="indicatorsCard">
+                    <h2>⚠️ Detected Indicators</h2>
+                    <div id="indicatorsList"></div>
+                </div>
+
+                <!-- Phishing Techniques -->
+                <div class="card" id="techniquesCard">
+                    <h2>🎯 Phishing Techniques Identified</h2>
+                    <div id="techniquesList"></div>
+                </div>
+
+                <!-- Recommendation -->
+                <div class="card recommendation-card" id="recommendationCard">
+                    <h2>💡 Recommendation</h2>
+                    <p id="recommendationText"></p>
+                </div>
+            </div>
+
+            <!-- Education Section -->
+            <div class="card info-card">
+                <h2>📚 Email Phishing Red Flags</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3>👤 Sender Analysis</h3>
+                        <ul>
+                            <li>Mismatched email addresses</li>
+                            <li>Free email providers for business</li>
+                            <li>Suspicious domains</li>
+                            <li>Display name vs. actual email</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>⚡ Urgency Tactics</h3>
+                        <ul>
+                            <li>"Account will be suspended"</li>
+                            <li>"Act within 24 hours"</li>
+                            <li>"Immediate action required"</li>
+                            <li>"Limited time offer"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>🔗 Link Analysis</h3>
+                        <ul>
+                            <li>Mismatched display text</li>
+                            <li>Shortened URLs</li>
+                            <li>Suspicious domains</li>
+                            <li>IP addresses in links</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>📝 Content Analysis</h3>
+                        <ul>
+                            <li>Generic greetings</li>
+                            <li>Poor grammar/spelling</li>
+                            <li>Requests for credentials</li>
+                            <li>Unexpected attachments</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SecureLearn Cyber Lab - Educational Use Only</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Sample phishing email
+        function loadSampleEmail() {
+            document.getElementById('senderInput').value = 'PayPal Security <noreply@paypa1-secure.tk>';
+            document.getElementById('subjectInput').value = 'URGENT: Your Account Will Be Suspended!';
+            document.getElementById('bodyInput').value = `Dear Customer,
+
+We have detected unusual activity on your account. Your account will be suspended within 24 hours unless you verify your identity immediately.
+
+Click here to verify: http://paypal-verify.tk/login
+
+Failure to verify will result in permanent account closure.
+
+PayPal Security Team`;
+        }
+
+        // Sample legitimate email
+        function loadLegitimateEmail() {
+            document.getElementById('senderInput').value = 'notifications@example.com';
+            document.getElementById('subjectInput').value = 'Your order confirmation';
+            document.getElementById('bodyInput').value = `Hi John,
+
+Thank you for your recent purchase. Your order #12345 has been confirmed and will ship within 2-3 business days.
+
+You can track your order at: https://www.example.com/orders/12345
+
+If you have any questions, please contact our support team.
+
+Best regards,
+Example Team`;
+        }
+
+        // Form submission
+        document.getElementById('emailAnalysisForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const sender = document.getElementById('senderInput').value;
+            const subject = document.getElementById('subjectInput').value;
+            const body = document.getElementById('bodyInput').value;
+            
+            const analyzeButton = document.getElementById('analyzeButtonText');
+            const loadingButton = document.getElementById('analyzeButtonLoading');
+            
+            analyzeButton.style.display = 'none';
+            loadingButton.style.display = 'inline';
+            
+            try {
+                const response = await fetch('/api/analyze-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ sender, subject, body })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayResults(data.result);
+                } else {
+                    alert('Error: ' + (data.error || 'Analysis failed'));
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            } finally {
+                analyzeButton.style.display = 'inline';
+                loadingButton.style.display = 'none';
+            }
+        });
+        
+        function displayResults(result) {
+            // Show results section
+            document.getElementById('resultsSection').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+            
+            // Display risk score
+            const scoreNumber = document.getElementById('scoreNumber');
+            const scoreCircle = document.getElementById('scoreCircle');
+            const riskLevel = document.getElementById('riskLevel');
+            
+            scoreNumber.textContent = result.risk_score;
+            riskLevel.textContent = result.risk_level;
+            
+            // Color code based on risk
+            scoreCircle.className = 'score-circle';
+            if (result.risk_level === 'HIGH') {
+                scoreCircle.classList.add('risk-high');
+            } else if (result.risk_level === 'MEDIUM') {
+                scoreCircle.classList.add('risk-medium');
+            } else {
+                scoreCircle.classList.add('risk-low');
+            }
+            
+            // Display email details
+            document.getElementById('emailFrom').textContent = result.sender;
+            document.getElementById('emailSubject').textContent = result.subject;
+            
+            // Display indicators
+            const indicatorsList = document.getElementById('indicatorsList');
+            if (result.indicators && result.indicators.length > 0) {
+                indicatorsList.innerHTML = '<ul class="indicators-list">' +
+                    result.indicators.map(ind => `<li>⚠️ ${ind}</li>`).join('') +
+                    '</ul>';
+            } else {
+                indicatorsList.innerHTML = '<p class="success-message">✅ No major phishing indicators detected</p>';
+            }
+            
+            // Display phishing techniques
+            const techniquesList = document.getElementById('techniquesList');
+            if (result.phishing_techniques && result.phishing_techniques.length > 0) {
+                techniquesList.innerHTML = '<ul class="techniques-list">' +
+                    result.phishing_techniques.map(tech => `<li>🎯 ${tech}</li>`).join('') +
+                    '</ul>';
+            } else {
+                techniquesList.innerHTML = '<p class="success-message">✅ No phishing techniques identified</p>';
+            }
+            
+            // Display recommendation
+            document.getElementById('recommendationText').textContent = result.recommendation;
+            
+            const recommendationCard = document.getElementById('recommendationCard');
+            recommendationCard.className = 'card recommendation-card';
+            if (result.risk_level === 'HIGH') {
+                recommendationCard.classList.add('risk-high');
+            } else if (result.risk_level === 'MEDIUM') {
+                recommendationCard.classList.add('risk-medium');
+            } else {
+                recommendationCard.classList.add('risk-low');
+            }
+        }
+    </script>
+</body>
+</html>

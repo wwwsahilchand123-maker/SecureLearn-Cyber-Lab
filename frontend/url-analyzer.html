@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Analyzer - SecureLearn Cyber Lab</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🛡️ SecureLearn Cyber Lab</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="url-analyzer.html" class="nav-link active">URL Analyzer</a>
+                <a href="email-analyzer.html" class="nav-link">Email Analyzer</a>
+                <a href="simulator.html" class="nav-link">Simulation</a>
+                <a href="quiz.html" class="nav-link">Quiz</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="about.html" class="nav-link">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="warning-banner">
+        <div class="container">
+            <strong>⚠️ EDUCATIONAL TOOL</strong> - Safe analysis only. Do not submit sensitive URLs.
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>🔍 URL Phishing Analyzer</h1>
+                <p>Analyze URLs for phishing indicators using AI-powered detection</p>
+            </div>
+
+            <!-- Analysis Form -->
+            <div class="card">
+                <h2>Enter URL to Analyze</h2>
+                <form id="urlAnalysisForm">
+                    <div class="form-group">
+                        <label for="urlInput">URL:</label>
+                        <input type="text" 
+                               id="urlInput" 
+                               class="form-control" 
+                               placeholder="https://example.com/login"
+                               required>
+                        <small class="form-text">Enter a complete URL including http:// or https://</small>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <span id="analyzeButtonText">🔍 Analyze URL</span>
+                        <span id="analyzeButtonLoading" class="loading" style="display: none;">
+                            ⏳ Analyzing...
+                        </span>
+                    </button>
+                </form>
+
+                <!-- Sample URLs -->
+                <div class="sample-urls">
+                    <h3>Try These Sample URLs:</h3>
+                    <div class="sample-grid">
+                        <button class="btn btn-sample" onclick="analyzeUrl('https://www.google.com')">
+                            Safe: Google.com
+                        </button>
+                        <button class="btn btn-sample" onclick="analyzeUrl('http://paypal-secure-login.tk/verify')">
+                            Suspicious: paypal-secure-login.tk
+                        </button>
+                        <button class="btn btn-sample" onclick="analyzeUrl('https://192.168.1.1/admin/login')">
+                            Suspicious: IP Address
+                        </button>
+                        <button class="btn btn-sample" onclick="analyzeUrl('http://amaz0n-account-verify.xyz/signin?user=test')">
+                            Phishing: Amazon Misspelling
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" style="display: none;">
+                <!-- Risk Score -->
+                <div class="card">
+                    <h2>Analysis Results</h2>
+                    <div class="risk-score-container">
+                        <div class="risk-score" id="riskScoreDisplay">
+                            <div class="score-circle" id="scoreCircle">
+                                <span class="score-number" id="scoreNumber">0</span>
+                                <span class="score-label">/100</span>
+                            </div>
+                            <div class="risk-level" id="riskLevel">ANALYZING...</div>
+                        </div>
+                        <div class="analyzed-url">
+                            <strong>Analyzed URL:</strong>
+                            <div id="analyzedUrl" class="url-display"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ML Prediction -->
+                <div class="card" id="mlPredictionCard">
+                    <h2>🤖 AI Prediction</h2>
+                    <div class="prediction-result">
+                        <div class="prediction-item">
+                            <span class="prediction-label">Classification:</span>
+                            <span class="prediction-value" id="mlPrediction">-</span>
+                        </div>
+                        <div class="prediction-item">
+                            <span class="prediction-label">Confidence:</span>
+                            <span class="prediction-value" id="mlConfidence">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indicators -->
+                <div class="card" id="indicatorsCard">
+                    <h2>⚠️ Detected Indicators</h2>
+                    <div id="indicatorsList"></div>
+                </div>
+
+                <!-- Features -->
+                <div class="card" id="featuresCard">
+                    <h2>📊 URL Features</h2>
+                    <div class="features-grid" id="featuresList"></div>
+                </div>
+
+                <!-- Recommendation -->
+                <div class="card recommendation-card" id="recommendationCard">
+                    <h2>💡 Recommendation</h2>
+                    <p id="recommendationText"></p>
+                </div>
+
+                <!-- Explanation -->
+                <div class="card" id="explanationCard">
+                    <h2>🔍 Detailed Explanation</h2>
+                    <div id="explanationContent"></div>
+                </div>
+            </div>
+
+            <!-- Education Section -->
+            <div class="card info-card">
+                <h2>📚 What We Analyze</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3>🔗 URL Structure</h3>
+                        <ul>
+                            <li>URL length and complexity</li>
+                            <li>Number of subdomains</li>
+                            <li>Special characters</li>
+                            <li>Domain entropy</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>🌐 Domain Analysis</h3>
+                        <ul>
+                            <li>IP address usage</li>
+                            <li>Suspicious TLDs</li>
+                            <li>Domain age patterns</li>
+                            <li>Brand impersonation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>🔒 Security Features</h3>
+                        <ul>
+                            <li>HTTPS presence</li>
+                            <li>Certificate validation</li>
+                            <li>Port usage</li>
+                            <li>Redirect patterns</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h3>🎯 Phishing Indicators</h3>
+                        <ul>
+                            <li>Suspicious keywords</li>
+                            <li>URL obfuscation</li>
+                            <li>Misleading domains</li>
+                            <li>Social engineering tactics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SecureLearn Cyber Lab - Educational Use Only</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/analyzer.js"></script>
+</body>
+</html>
