@@ -1,24 +1,67 @@
-# AI-Powered Phishing Detection & Awareness Simulator
+# 🛡️ SecureLearn Cyber Lab
 
-Educational B.Tech Cyber Security project.
+AI-Powered Phishing Detection & Cyber Security Awareness Simulator.
 
-## Stack
-- Frontend: HTML, CSS, JavaScript
-- Backend: Python + Flask
-- ML: scikit-learn Random Forest
-- Database: SQLite
+SecureLearn Cyber Lab is an educational B.Tech Cyber Security project designed to help users understand phishing attacks, suspicious URLs, malicious emails, and common social-engineering techniques through an interactive web-based simulator.
 
-## Setup
-```bash
-python -m venv .venv
-# Windows: .venv\\Scripts\\activate
-# Linux/macOS: source .venv/bin/activate
-pip install -r requirements.txt
-python ml/train_model.py
-python -m backend.app
-```
+## 🚀 Features
 
-Open http://127.0.0.1:5000/
+- 🔗 Phishing URL Analysis
+- 📧 Email Phishing Analysis
+- 🤖 Machine Learning based prediction
+- 🧠 Phishing awareness simulator
+- 📝 Cyber Security quiz
+- 📊 Analysis dashboard
+- 🗄️ Local database support
+- 🎯 Educational phishing scenarios
+- 🔐 Designed for security awareness and learning
 
-## Safety
-This is an educational simulator. It must not collect or transmit real passwords, OTPs, tokens, payment information, or other secrets.
+## 🛠️ Technology Stack
+
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
+
+### Backend
+- Python
+- Flask
+
+### Machine Learning
+- Scikit-learn
+- Random Forest
+- Python
+
+### Database
+- SQLite
+
+## 📁 Project Structure
+
+```text
+SecureLearn-Cyber-Lab/
+│
+├── backend/
+│   ├── routes/
+│   ├── services/
+│   ├── database/
+│   ├── models/
+│   ├── app.py
+│   └── config.py
+│
+├── frontend/
+│   ├── css/
+│   ├── js/
+│   ├── index.html
+│   ├── dashboard.html
+│   ├── quiz.html
+│   └── simulator.html
+│
+├── ml/
+│   ├── dataset/
+│   ├── model/
+│   ├── predict.py
+│   └── train_model.py
+│
+├── requirements.txt
+├── run_server.py
+└── run_project.bat
