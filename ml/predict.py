@@ -48,10 +48,17 @@ class PhishingPredictor:
         if self.model is None:
             return 'unknown', 0.0, {}
         
-        # Ensure all features are present
+        # Ensure all features are present and safe for the model.
         feature_vector = []
         for feature_name in self.feature_names:
-            feature_vector.append(features.get(feature_name, 0))
+            value = features.get(feature_name, 0)
+            try:
+                value = float(value)
+            except (TypeError, ValueError):
+                value = 0.0
+            if not np.isfinite(value):
+                value = 0.0
+            feature_vector.append(value)
         
         # Predict
         prediction_proba = self.model.predict_proba([feature_vector])[0]
