@@ -17,6 +17,16 @@ class Config:
     # App settings
     SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
     DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
+
+    @classmethod
+    def validate(cls):
+        """Reject unsafe production defaults before the app starts."""
+        environment = os.getenv('ENVIRONMENT', 'development').lower()
+        if environment == 'production':
+            if cls.SECRET_KEY == 'dev-secret-key-change-in-production':
+                raise RuntimeError('SECRET_KEY must be configured in production')
+            if len(cls.SECRET_KEY) < 32:
+                raise RuntimeError('SECRET_KEY must be at least 32 characters in production')
     
     # Database
     DATABASE_PATH = os.getenv('DATABASE_PATH', str(BASE_DIR / 'database' / 'phishing_simulator.db'))
@@ -49,3 +59,5 @@ config = {
     'production': ProductionConfig,
     'default': DevelopmentConfig
 }
+
+Config.validate()
