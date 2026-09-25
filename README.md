@@ -120,3 +120,20 @@ This project is for academic, awareness and authorized lab use. A prediction fro
 **Built by Sahil Chand**
 
 </div>
+
+---
+
+## 🛡️ Security & Project Quality
+
+SecureLearn is intended for **academic and authorized lab use**. The project treats analysis inputs as untrusted data and keeps security-sensitive configuration outside source control.
+
+### Quality checks
+- Validate untrusted URL/email inputs before analysis.
+- Keep production secrets out of the repository.
+- Test security-critical configuration before deployment.
+- Evaluate the ML classifier with precision, recall, F1-score and false-positive behaviour.
+- Treat model predictions as indicators, not proof of malicious activity.
+
+### Documentation
+- [Product Requirements](docs/PRD.md)
+- [Production Deployment Security Checklist](docs/DEPLOYMENT_CHECKLIST.md)
